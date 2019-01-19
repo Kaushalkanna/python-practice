@@ -27,9 +27,9 @@ TEST_DATA = []
 def time_fn(to_call, unordered_list, *args, **kwargs):
     temp_unordered_list = unordered_list.copy()
     wrapped = wrapper(to_call, temp_unordered_list, *args, **kwargs)
-    print(f"running {to_call}")
+    # print(f"running {to_call}")
     d_time = timeit(wrapped, number=1000)
-    print(f"Finished {to_call}")
+    # print(f"Finished {to_call}")
     return d_time
 
 

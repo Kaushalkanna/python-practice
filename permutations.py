@@ -2,37 +2,18 @@ def to_string(l):
     return ''.join(l)
 
 
-def permute(a, l, r):
-    if l == r:
-        print to_string(a)
+def permute(input_list, start_index, end_index, result_data):
+    if start_index == end_index:
+        result_data.append(to_string(input_list))
     else:
-        for i in xrange(l, r + 1):
-            a[l], a[i] = a[i], a[l]
-            permute(a, l + 1, r)
-            a[l], a[i] = a[i], a[l]  # backtrack
+        for i in range(start_index, end_index):
+            input_list[start_index], input_list[i] = input_list[i], input_list[start_index]
+            permute(input_list, start_index + 1, end_index, result_data)
+            input_list[start_index], input_list[i] = input_list[i], input_list[start_index]  # backtrack
+    return result_data
 
 
 string = "ABC"
-n = len(string)
 a = list(string)
-permute(a, 0, n - 1)
-
-
-def factorial(k):
-    p = 1
-    for i in range(k, 1, -1):
-        p += p * (i - 1)
-    return p
-
-print(factorial(2))
-
-
-def factorial_easy(k):
-    p = k
-    for i in range(k-1, 1, -1):
-        p *= i
-    return p
-
-print(factorial_easy(6))
-
-
+result = []
+print(permute(a, 0, len(a), result))
